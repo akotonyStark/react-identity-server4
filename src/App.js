@@ -1,25 +1,22 @@
 import logo from './logo.svg'
 import './App.css'
-import { UserManager } from 'oidc-client'
-import { config } from '../src/services/userService'
+
+import { login, logout, renewToken, getUser } from './services/userService'
+import { useState } from 'react'
 
 function App(props) {
-  // initialise!
-  const userManager = new UserManager(config)
+  const [result, setResults] = useState(null)
 
-  const getUser = async () => {
-    return userManager.getUser()
-  }
-  const login = async () => {
-    return userManager.signinRedirect()
+  const getUserInfo = async () => {
+    let res = await getUser()
+    console.log(res)
+    setResults(res)
   }
 
-  const renewToken = async () => {
-    return userManager.signinSilent()
-  }
-
-  const logout = async () => {
-    return userManager.signoutRedirect()
+  const renew = async () => {
+    let res = await renewToken()
+    console.log(res)
+    setResults(res)
   }
 
   return (
@@ -36,7 +33,7 @@ function App(props) {
           <button
             className='btn btn-secondary btn-getuser'
             style={{ margin: '10px' }}
-            onClick={getUser}
+            onClick={getUserInfo}
           >
             Get User info
           </button>
@@ -50,7 +47,7 @@ function App(props) {
           <button
             className='btn btn-success btn-renewtoken'
             style={{ margin: '10px' }}
-            onClick={renewToken}
+            onClick={renew}
           >
             Renew Token
           </button>
@@ -64,7 +61,7 @@ function App(props) {
         </div>
       </div>
 
-      <div>Response</div>
+      <div>{result}</div>
     </div>
   )
 }
