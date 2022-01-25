@@ -10,6 +10,16 @@ function App(props) {
   const getUserInfo = async () => {
     let res = await getUser()
     console.log(res)
+    let temp = []
+    temp.push(res.access_token)
+    temp.push(res.expired)
+    temp.push(res.expires_at)
+    temp.push(res.expires_in)
+    temp.push(res.id_token)
+    temp.push(res.refresh_token)
+    temp.push(res.scope)
+    temp.push(res.session_state)
+    setResults(temp)
   }
 
   const renew = async () => {
@@ -59,8 +69,26 @@ function App(props) {
           </button>
         </div>
       </div>
+
+      <div className='row'>
+        <div className='col-md-12 text-center' style={{ marginTop: '30px' }}>
+          <div style={styles}>
+            {result.map((item, i) => (
+              <p key={i}>{item}</p>
+            ))}
+          </div>
+        </div>
+      </div>
     </div>
   )
 }
 
 export default App
+
+const styles = {
+  maxWidth: 700,
+  background: '#f1f1f1',
+  wordWrap: 'break-word',
+  position: 'relative',
+  left: '40%',
+}

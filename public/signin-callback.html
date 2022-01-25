@@ -14,7 +14,7 @@
       new Oidc.UserManager({ response_mode: 'query' })
         .signinRedirectCallback()
         .then(function () {
-          window.location = 'index.html'
+          window.location = '/'
         })
         .catch(function (e) {
           console.error(e)
