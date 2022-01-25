@@ -8,9 +8,9 @@ const config = {
   client_root: 'http://localhost:3001',
   apiRoot: 'https://demo.identityserver.io/api/',
   // URL to redirect to after login
-  redirect_uri: 'http://localhost:3001/signin-oidc',
+  redirect_uri: 'http://localhost:3001/signin-callback.html',
   // URL to redirect to after logout
-  post_logout_redirect_uri: 'http://localhost:3001/signout-oidc',
+  post_logout_redirect_uri: 'http://localhost:3001/silent-renew.html',
   response_type: 'code',
   // the scopes or resources we would like access to
   scope: 'openid profile email api',

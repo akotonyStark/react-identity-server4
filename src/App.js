@@ -5,18 +5,17 @@ import { login, logout, renewToken, getUser } from './services/userService'
 import { useState } from 'react'
 
 function App(props) {
-  const [result, setResults] = useState(null)
+  const [result, setResults] = useState([])
 
   const getUserInfo = async () => {
     let res = await getUser()
     console.log(res)
-    setResults(res)
   }
 
   const renew = async () => {
     let res = await renewToken()
     console.log(res)
-    setResults(res)
+    //setResults([res])
   }
 
   return (
@@ -60,8 +59,6 @@ function App(props) {
           </button>
         </div>
       </div>
-
-      <div>{result}</div>
     </div>
   )
 }
