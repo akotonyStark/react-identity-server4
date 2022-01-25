@@ -19,13 +19,8 @@ function App(props) {
     temp.push(res.refresh_token)
     temp.push(res.scope)
     temp.push(res.session_state)
+    temp.push(res.profile)
     setResults(temp)
-  }
-
-  const renew = async () => {
-    let res = await renewToken()
-    console.log(res)
-    //setResults([res])
   }
 
   return (
@@ -56,7 +51,7 @@ function App(props) {
           <button
             className='btn btn-success btn-renewtoken'
             style={{ margin: '10px' }}
-            onClick={renew}
+            onClick={renewToken}
           >
             Renew Token
           </button>
